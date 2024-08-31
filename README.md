@@ -17,7 +17,8 @@ Usage
 
 Launch the app on your device or simulator.
 Follow the on-screen instructions to measure your ring size.
-UI : ![image](https://github.com/user-attachments/assets/0c6938c5-6a7c-41fd-89b2-b5e110cd4f09)
+UI : <img src="https://github.com/user-attachments/assets/0c6938c5-6a7c-41fd-89b2-b5e110cd4f09" alt="UI" width="400"/>
+
 
 
 Quick Demo : https://youtu.be/dMnqffqBSTw?feature=shared
