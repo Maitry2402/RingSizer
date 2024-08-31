@@ -18,6 +18,8 @@ Usage
 Launch the app on your device or simulator.
 Follow the on-screen instructions to measure your ring size.
 
+Quick Demo : https://youtu.be/dMnqffqBSTw?feature=shared
+
 Contributing
 
 Contributions are welcome! Please follow these guidelines:
