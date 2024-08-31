@@ -11,11 +11,11 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-import SwiftUI
 
 struct RingSizerView: View {
     @State private var ringSize: CGFloat = 100 // Initial size of the circle
-    
+    @State private var showRingSize: Bool = false // Controls whether the ring size in mm is shown
+
     var body: some View {
         VStack(spacing: 20) {
             // Top Bar Icons
@@ -73,8 +73,7 @@ struct RingSizerView: View {
             
             // "Get the ring size" button
             Button(action: {
-                print("Ring size: \(ringSize)")
-                // Implement action for getting the ring size
+                showRingSize = true
             }) {
                 Text("Get the ring size")
                     .font(.title3)
@@ -82,6 +81,13 @@ struct RingSizerView: View {
                     .padding()
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(10)
+            }
+            
+            // Show the ring size in mm
+            if showRingSize {
+                Text("Ring Size: \(String(format: "%.2f", ringSize)) mm")
+                    .font(.title2)
+                    .padding(.top, 20)
             }
             
             // Slider for adjusting the ring size
