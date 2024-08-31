@@ -9,7 +9,9 @@ Accurate Measurement: Guides users through measuring their ring size.
 Installation
 
 Clone the Repository: git clone https://github.com/Maitry2402/RingSizer.git
+
 Open the Project: Open RingSizer.xcodeproj in Xcode.
+
 Build and Run: Select a target device or simulator and build the project using Xcode.
 Usage
 
