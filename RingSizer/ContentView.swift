@@ -28,12 +28,11 @@ struct RingSizerView: View {
                 .padding(.bottom, 10)
 
             ZStack {
-                // Custom grid with bold 3x3 and smaller grids inside
                 AccurateGridShape(bold: false, borderColor: .clear)
-                    .stroke(lineWidth: 0.05) // For sub-grid
+                    .stroke(lineWidth: 0.05) 
                     .overlay(
                         AccurateGridShape(bold: true, borderColor: .gray)
-                            .stroke(Color.gray, lineWidth: 0.8) // Change color for bold lines
+                            .stroke(Color.gray, lineWidth: 0.8) 
                     )
                     .frame(width: 250, height: 250)
                     .background(.thinMaterial)
@@ -73,7 +72,6 @@ struct RingSizerView: View {
                     .cornerRadius(10)
             }
 
-            // Show the ring size in mm
             if showRingSize {
                 Text("Ring Size: \(String(format: "%.2f", ringSize)) mm")
                     .font(.title2)
@@ -95,14 +93,14 @@ struct CustomSlider: View {
                 .fontWeight(.bold)
                 .padding(.bottom, 20)
 
-            ZStack(alignment: .bottom) {  // Align everything at the bottom
+            ZStack(alignment: .bottom) { 
                 HStack(spacing: 2.5) {
                     Spacer()
 
                     ForEach(0..<20) { tick in
                         Rectangle()
                             .fill(tick % 2 == 0 ? Color.gray : Color.gray)
-                            .frame(width: 1, height: tick % 2 == 0 ? 20 : 10) // Big for even, small for odd
+                            .frame(width: 1, height: tick % 2 == 0 ? 20 : 10) 
                         Spacer()
                     }
 
@@ -110,7 +108,6 @@ struct CustomSlider: View {
                 }
                 .frame(height: 20)
 
-                // Indicator - Orange Line1
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color.orange)
                     .frame(width: 4, height: 35)
@@ -159,13 +156,11 @@ struct CustomSlider: View {
         }
     }
 
-    // Convert value to position
     func valueToPosition(value: CGFloat) -> CGFloat {
         let totalWidth: CGFloat = 250
         return (value - 20) * (totalWidth / 180) - totalWidth / 2
     }
 
-    // Convert position to value
     func positionToValue(position: CGFloat) -> CGFloat {
         let totalWidth: CGFloat = 250
         return (position + totalWidth / 2) / (totalWidth / 180) + 20
@@ -177,7 +172,6 @@ struct BottomBarView: View {
         HStack {
             Spacer()
             Button(action: {
-                // Gear action
             }){
                 VStack {
                     Image(systemName: "checkmark.circle")
@@ -189,7 +183,6 @@ struct BottomBarView: View {
             }
             Spacer()
             Button(action: {
-                // Gear action
             }){
                 VStack {
                     Image(systemName: "hand.tap")
@@ -202,7 +195,6 @@ struct BottomBarView: View {
             }
             Spacer()
             Button(action: {
-                // Gear action
             }){
                 VStack {
                     Image(systemName: "arrow.right.arrow.left")
@@ -220,8 +212,8 @@ struct BottomBarView: View {
 }
 
 struct AccurateGridShape: Shape {
-    var bold: Bool = false  // Flag to decide whether to draw bold lines
-    var borderColor: Color = .clear  // Color for the outer border
+    var bold: Bool = false 
+    var borderColor: Color = .clear  
 
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -229,13 +221,12 @@ struct AccurateGridShape: Shape {
         let numberOfLargeLines = 3
         let largeGridSize = rect.width / CGFloat(numberOfLargeLines)
 
-        let numberOfSmallLines = 10  // Smaller sub-grid lines inside the large cells
+        let numberOfSmallLines = 10  
         let smallGridSize = largeGridSize / CGFloat(numberOfSmallLines)
 
         for i in 0..<numberOfLargeLines {
             let position = largeGridSize * CGFloat(i + 1)
 
-            // Step 1: Draw thicker lines for the 3x3 grid when 'bold' is true
             if bold {
                 path.move(to: CGPoint(x: position, y: rect.minY))
                 path.addLine(to: CGPoint(x: position, y: rect.maxY))
@@ -244,22 +235,18 @@ struct AccurateGridShape: Shape {
                 path.addLine(to: CGPoint(x: rect.maxX, y: position))
             }
             else {
-                // Step 2: Draw smaller, thinner sub-grid lines
                 for j in 0..<numberOfSmallLines {
                     let smallPosition = smallGridSize * CGFloat(j + 1)
 
-                    // Vertical sub-grid lines
                     path.move(to: CGPoint(x: largeGridSize * CGFloat(i) + smallPosition, y: 0))
                     path.addLine(to: CGPoint(x: largeGridSize * CGFloat(i) + smallPosition, y: rect.height))
 
-                    // Horizontal sub-grid lines
                     path.move(to: CGPoint(x: 0, y: largeGridSize * CGFloat(i) + smallPosition))
                     path.addLine(to: CGPoint(x: rect.width, y: largeGridSize * CGFloat(i) + smallPosition))
                 }
             }
         }
 
-        // Draw the outer border with the specified color
         if bold {
             path.move(to: CGPoint(x: rect.minX, y: rect.minY))
             path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
@@ -275,7 +262,6 @@ struct TopBarView: View {
     var body: some View {
         HStack {
             Button(action: {
-                // Gear action
             }) {
                 Image(systemName: "gearshape")
                     .foregroundColor(.black)
@@ -287,7 +273,6 @@ struct TopBarView: View {
 
             HStack(spacing: 16) {
                 Button(action: {
-                    // Reset action
                 }) {
                     Image(systemName: "arrow.counterclockwise")
                         .foregroundColor(.black)
@@ -296,7 +281,6 @@ struct TopBarView: View {
                 }
 
                 Button(action: {
-                    // Info action
                 }) {
                     Image(systemName: "info.circle")
                         .foregroundColor(.black)
